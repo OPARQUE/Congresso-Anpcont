@@ -154,15 +154,6 @@ recordsperpage: 10
 #                  side-effects if the website shows different content to
 #                  authenticated users.
 
-# Produção
-#caching:
-#    config: true
-#    templates: true
-#    request: true
-#    duration: 10
-#    authenticated: false
-
-# Teste
 caching:
     config: false
     templates: false

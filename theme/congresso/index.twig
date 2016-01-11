@@ -9,7 +9,7 @@
         <div class="slider">
 
             {% for slide in slides %}
-            <div class="slide">
+            <div class="slide" style="background-image: url(files/{{ slide.background|e('html_attr') }});">
                 <p><span>{{ slide.title|e }}</span></p>
 
                 {% if slide.button_main_text %}
