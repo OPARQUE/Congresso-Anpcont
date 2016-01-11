@@ -1,0 +1,80 @@
+<footer>
+    <form class="newsletter" action="https://www.rockpigeon.com.br/form/public" method="post" accept-charset="utf-8">
+        <div class="container">
+            <input type="hidden" name="dateFormat" value="d/m/Y">
+            <input type="hidden" name="dateTimeFormat" value="d/m/Y H:i:s">
+            <input type="hidden" name="receiverId" value="2438">
+            <input type="hidden" name="receiverToken" value="ed9dc715f26fdb75975f0a85be3c21c5">
+            <input type="hidden" name="successUrl" value="http://localhost:58827/">
+            <input type="hidden" name="labels" value="2322.34f90976bcd8277a8c2cc29ebd577d80">
+            <h1>Cadastre-se e receba as novidades do X Congresso ANPCONT</h1>
+            <input type="text" name="fields[2]" placeholder="Nome">
+            <input type="email" name="fields[1]" placeholder="Email">
+            <input type="submit" name="" value="Enviar">
+        </div>
+    </form>
+
+    <div class="apoio">
+        <div class="container">
+            <h2>Apoio e Patrocínio</h2>
+            <img src="files/marcas/cfc.png" alt="Marca do Conselho Federal de Contabilidade" />
+            <img src="files/marcas/fbc.png" alt="Marca da Fundação Brasileira de Contabilidade" />
+            <img src="files/marcas/abracicon.png" alt="Marca da Abracicon" />
+            <img src="files/marcas/fucape.png" alt="Marca da FUCAPE" />
+            <img src="files/marcas/fecap.png" alt="Marca da FECAP" />
+            <img src="files/marcas/unisinos.png" alt="Marca da UNISINOS" />
+        </div>
+    </div>
+
+    <div class="organizador">
+        <div class="container">
+            <h2>Organizador</h2>
+            <img class="vertical" src="{{ paths.theme }}imgs/anpcont-beige-vertical.svg" alt="Marca da Anpcont" />
+            <img class="horizontal" src="{{ paths.theme }}imgs/anpcont-beige-horizontal.svg" alt="Marca da Anpcont" />
+            <p>A ANPCONT é uma associação sem fins lucrativos e apartidária, fundada em 30 de janeiro de 2006, e tem por objetivo atuar na área de educação, congregando e representando as instituições brasileiras que mantém cursos de mestrado e/ou doutorado em Ciências Contábeis.</p>
+            <div class="social">
+                <a class="mail" href="mailto:congresso@anpcont.org.br">congresso@anpcont.org.br</a>
+                <a class="facebook" target="_blank" href="https://www.facebook.com/anpcont/">/ anpcont</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="desenvolvedor">
+        <div class="container">
+            <span class="anpcont">ANPCONT 2015 -</span>
+            <span class="oparque">
+                Desenvolvido por
+                <a href="http://www.oparque.art.br/" target="_blank">
+                    <img src="{{ paths.theme }}imgs/oparque.svg" alt="Marca dOPARQUE" />
+                </a>
+            </span>
+        </div>
+    </div>
+</footer>
+
+<!--[if lt IE 9]>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--<![endif]-->
+
+<script type="text/javascript" src="{{ paths.theme }}scripts/slick/slick.min.js"></script>
+
+<script src="{{ paths.theme }}scripts/main.js" async defer></script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-57289226-3', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+</script>
+
+</body>
+</html>

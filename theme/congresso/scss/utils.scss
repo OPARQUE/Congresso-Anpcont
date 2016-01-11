@@ -1,0 +1,119 @@
+﻿/*----------------------------------------------------------------------------*/
+/* Colors */
+/*----------------------------------------------------------------------------*/
+
+$main-white: #ffffff;
+$main-gray: #36323f;
+$main-beige: #e5dad1;
+$main-red: #af3838;
+
+$light-gray: lighten($main-gray, 30%);
+$light-beige: lighten($main-beige, 8.5%);
+
+/*----------------------------------------------------------------------------*/
+/* Media queries */
+/*----------------------------------------------------------------------------*/
+
+$x-small: 480px;
+$small: 768px;
+$medium: 1024px;
+$large: 1200px;
+$x-large: 1366px;
+
+/*----------------------------------------------------------------------------*/
+/* Utils */
+/*----------------------------------------------------------------------------*/
+@mixin debug {
+    outline: 3px solid magenta;
+}
+
+@mixin placeholder($color) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+
+    &:-moz-placeholder {
+        color: $color;
+        opacity: 1;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Columns */
+/*----------------------------------------------------------------------------*/
+
+$site-gap: 4%;
+$site-column: 12%;
+
+@function gap ($amount) {
+    @return $amount * $site-gap;
+}
+
+@function gapPixels($amount, $pixels) {
+    @return gap($amount) / 100% * $pixels;
+}
+
+@function width ($amount) {
+    @return $amount * $site-column + ($amount - 1) * $site-gap;
+}
+
+@mixin columns ($amount) {
+    width: width($amount);
+    margin-left: gap(1);
+}
+
+@mixin column-x-y ($x, $y) {
+    width: 100% * width($x) / width($y);
+    display: inline-block;
+    vertical-align: top;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Fonts */
+/*----------------------------------------------------------------------------*/
+
+$main-font-size: 18px;
+
+@mixin sans-regular {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+}
+
+@mixin sans-semibold {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 600;
+}
+
+@mixin sans-italic {
+    @include serif-regular;
+    font-style: italic;
+}
+
+@mixin serif-regular {
+    font-family: "Lora", serif;
+    font-weight: 400;
+}
+
+@mixin serif-italic {
+    @include serif-regular;
+    font-style: italic;
+}
+
+@mixin serif-bold {
+    font-family: "Lora", serif;
+    font-weight: 700;
+}
+
+@mixin serif-bold-italic {
+    @include serif-bold;
+    font-style: italic;
+}

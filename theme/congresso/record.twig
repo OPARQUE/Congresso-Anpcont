@@ -1,0 +1,23 @@
+{% include '_header.twig' %}
+
+<main class="{{ record.slug }}">
+
+    {% if record.title %}
+    <div class="h1">
+        <div class="container">
+            <h1 data-bolt-field="title">{{ record.title|e }}</h1>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if record.content %}
+    <article data-bolt-field="content" class="bolt-content">
+        {{ record.content|replace({'style=': 'no-style='})|raw }}
+    </article>
+    {% endif %}
+
+
+
+</main>
+
+{% include '_footer.twig' %}

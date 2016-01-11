@@ -1,0 +1,83 @@
+slides:
+    name: Slides
+    singular_name: Slide
+    viewless: false
+    icon_many: fa:desktop
+    icon_one: fa:desktop
+
+    fields:
+        title:
+            label: Título
+            type: text
+            class: large
+            group: Conteúdo
+        background:
+            type: image
+            label: Imagem de Fundo
+            info: 'Tamanho recomendado: 1500 x 700 px. Conteúdo gráfico importante deve ficar à direita.'
+
+        button_main_text:
+            label: Texto do Botão Principal
+            type: text
+            group: Botões
+        button_main_link:
+            label: Link do Botão Principal
+            type: text
+        button_secondary_text:
+            label: Texto do Botão Secondário
+            type: text
+        button_secondary_link:
+            label: Link do Botão Secondário
+            type: text
+
+
+home:
+    name: Homes
+    singular_name: Home
+    record_template: index.twig
+    icon_many: fa:home
+    icon_one: fa:home
+
+    fields:
+        content:
+            label: Conteúdo
+            type: html
+            group: Conteúdo
+        calendario:
+            label: Mostrar Calendário
+            type: checkbox
+            default: false
+            
+        faixa_title:
+            label: Título
+            type: text
+            group: Faixa
+        faixa_subtitle:
+            label: Subtítulo
+            type: text
+        faixa_button_text:
+            label: Texto do Botão
+            type: text
+        faixa_button_link:
+            label: Link do Botão
+            type: text
+
+
+pages:
+    name: Pages
+    singular_name: Page
+    icon_many: fa:newspaper-o
+    icon_one: fa:newspaper-o
+
+    fields:
+        title:
+            label: Título
+            type: text
+            class: large
+            group: Conteúdo
+        slug:
+            type: slug
+            uses: title
+        content:
+            label: Conteúdo
+            type: html

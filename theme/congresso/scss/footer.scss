@@ -1,0 +1,385 @@
+﻿@import "utils.scss";
+
+/*----------------------------------------------------------------------------*/
+/* Footer */
+/*----------------------------------------------------------------------------*/
+
+footer {
+    background-color: $main-gray;
+    color: $main-beige;
+    margin-top: gap(1);
+    font-size: 0;
+
+    .container {
+        max-width: $x-large;
+        margin: 0 auto;
+        padding: 0 gap(1);
+
+        @media (min-width: $x-large) {
+            padding: 0 (gap(1) / 100% * $x-large);
+        }
+    }
+
+    & > div {
+        font-size: $main-font-size;
+    }
+
+    h2 {
+        @include serif-bold;
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: gap(2);
+        text-align: left;
+    }
+
+    @media (min-width: $x-large) {
+        margin-top: gap(1) / 100% * $x-large;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Newsletter */
+/*----------------------------------------------------------------------------*/
+
+footer .newsletter {
+    .container {
+        padding-top: gap(1);
+        padding-bottom: gap(1);
+
+        @media (min-width: $x-large) {
+            padding-top: gapPixels(1, $x-large);
+            padding-bottom: gapPixels(1, $x-large);
+        }
+    }
+
+    h1 {
+        @include serif-bold;
+        margin-top: 0;
+        font-size: 22px;
+
+        @media (min-width: $small) {
+            width: 597px;
+        }
+
+        @media (min-width: 800px) {
+            width: 700px;
+        }
+    }
+
+    input {
+        @include placeholder($main-beige);
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: $main-gray;
+        border: 3px solid $main-beige;
+        padding: 7px;
+        font-size: $main-font-size;
+
+        &:focus {
+            @include placeholder($light-gray);
+            border-color: $light-gray;
+        }
+    }
+
+    input[type="submit"] {
+        @include serif-bold-italic;
+        background-color: $main-beige;
+        color: $main-gray;
+        margin-bottom: 0;
+    }
+
+    @media (min-width: $small) {
+        $margin-right: 100% * gap(1) / (100% - gap(2));
+        $submit-width: width(1);
+
+        .container {
+            background-image: url(../imgs/gene-beige.svg);
+            background-repeat: no-repeat;
+            background-position: (100% - gap(1.75)) center;
+            background-size: contain;
+        }
+
+        input {
+            display: inline-block;
+            width: (100% - $submit-width - 2 * $margin-right) / 2;
+            margin-right: $margin-right;
+        }
+
+        input[type="submit"] {
+            width: $submit-width;
+            border: 3px solid $main-gray;
+            margin-right: 0;
+        }
+    }
+
+    @media (min-width: $medium) {
+        h1 {
+            font-size: 26px;
+            width: 817px;
+        }
+    }
+
+    @media (min-width: $large) {
+        h1 {
+            font-size: 32px;
+            width: 960px;
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Apoio */
+/*----------------------------------------------------------------------------*/
+
+.apoio {
+    text-align: justify;
+    background-color: $main-beige;
+    color: black;
+    padding: gap(1) 0 0 0;
+
+    .container {
+        padding-left: 0;
+    }
+
+    h2 {
+        color: $main-red;
+        padding-left: gap(1);
+        margin-bottom: 10px;
+    }
+
+    img {
+        vertical-align: middle;
+        margin-left: gap(1);
+        margin-bottom: gap(1);
+        width: 50% - gap(2);
+        height: auto;
+        /* FIXME: Melhorar o tamanho dessas imagens*/
+        $imgs-size: cfc 131px, fbc 113px, abracicon 94px, fucape 153px, fecap 107px, unisinos 142px;
+
+        @each $data in $imgs-size {
+            $img: nth($data, 1);
+            $size: nth($data, 2);
+
+            &[src$="#{$img}.png"] {
+                max-width: $size;
+
+                @media (min-width: 1060px) {
+                    width: $size / 740px * 74%;
+                    max-width: 4242px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $x-large) {
+        padding: gapPixels(1, $x-large) 0 0 0;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Organização */
+/*----------------------------------------------------------------------------*/
+
+footer .organizador {
+    padding: gap(2) 0;
+    font-size: 0;
+    position: relative;
+
+    img {
+        @include columns(6);
+    }
+
+    p {
+        @include serif-italic;
+        font-size: 16px;
+        margin: 30px gap(1);
+    }
+
+    .horizontal {
+        display: none;
+    }
+
+    a {
+        @include sans-regular;
+        font-style: normal;
+        letter-spacing: 0;
+        display: block;
+        font-size: 20px;
+        color: $main-beige;
+        text-decoration: none;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left center;
+        margin-top: 15px;
+        margin-left: gap(1);
+        margin-right: gap(1);
+    }
+
+    .mail {
+        background-image: url(../imgs/mail.svg);
+        padding-left: 45px;
+    }
+
+    .facebook {
+        background-image: url(../imgs/facebook.svg);
+        padding-left: 35px;
+    }
+
+    @media (min-width: $x-small) {
+        p {
+            margin: 40px gap(1) 25px gap(1);
+        }
+
+        .vertical {
+            display: none;
+        }
+
+        .horizontal {
+            display: block;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        .facebook {
+            position: absolute;
+            right: gap(1);
+        }
+    }
+
+    @media (min-width: 640px) {
+        padding-top: gap(1);
+        padding-bottom: gap(1);
+
+        p {
+            display: inline-block;
+            @include columns(3);
+            margin-bottom: 0;
+            margin-right: 0;
+        }
+
+        .social {
+            display: inline-block;
+            @include columns(3);
+            vertical-align: top;
+            margin-top: gap(1);
+        }
+
+        a {
+            display: block;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .facebook {
+            position: static;
+        }
+    }
+
+    @media (min-width: $small) {
+        h2 {
+            margin-bottom: gap(1);
+        }
+
+        .horizontal {
+            display: none;
+        }
+
+        .vertical {
+            $margin: .75;
+
+            display: inline-block;
+            width: width(3) - gap(2 * $margin);
+            margin-left: gap(1) + gap($margin);
+            margin-right: gap($margin);
+            vertical-align: top;
+        }
+
+        p {
+            width: width(3);
+            margin-top: 0;
+        }
+
+        .social {
+            width: width(6);
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        .facebook {
+            margin-left: gap(2);
+        }
+    }
+
+    @media (min-width: $medium) {
+        .vertical, .facebook {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .vertical, p, .social {
+            @include columns(2);
+            text-align: left;
+        }
+
+        .social, .mail {
+            margin-top: 0;
+        }
+    }
+
+    @media (min-width: $large) {
+        img, p, .social {
+            padding: 0 gap(.5);
+        }
+
+        a {
+            font-size: 24px;
+        }
+
+        .mail {
+            padding-left: 60px;
+        }
+
+        .facebook {
+            margin-top: 25px;
+            padding-left: 50px;
+        }
+    }
+
+    @media (min-width: $x-large) {
+        padding: (gap(1) / 100% * $x-large) 0;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Desenvolvedor */
+/*----------------------------------------------------------------------------*/
+
+footer .desenvolvedor {
+    background-color: $main-beige;
+    color: $main-gray;
+    text-align: center;
+    font-size: 16px;
+    padding: 12px gap(1);
+
+    span {
+        vertical-align: middle;
+        line-height: 2;
+    }
+
+    img {
+        vertical-align: middle;
+        width: 83px;
+        margin-left: 3px;
+    }
+
+    .oparque {
+        @include serif-italic;
+    }
+}

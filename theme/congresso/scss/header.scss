@@ -1,0 +1,430 @@
+﻿@import "utils.scss";
+
+/*----------------------------------------------------------------------------*/
+/* Header */
+/*----------------------------------------------------------------------------*/
+
+$header-padding: 20px;
+
+header {
+    $first-column: 70%;
+    $second-column: 10%;
+    $gap: 100% - $first-column - $second-column - gap(2);
+
+    background-color: $main-gray;
+    padding: gap(1) 0;
+    color: $main-beige;
+    font-size: 0;
+
+    .container {
+        position: relative;
+        margin: 0 auto;
+        max-width: $x-large;
+        padding: 0;
+    }
+
+    ol {
+        list-style-type: none;
+    }
+
+    .date, .vertical {
+        display: none;
+    }
+
+    .horizontal {
+        width: $first-column;
+        margin-left: gap(1);
+    }
+
+    button {
+        width: $second-column;
+        padding: 0;
+        padding-top: $second-column;
+        margin-left: $gap;
+        display: inline-block;
+        background-color: transparent;
+        border: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-image: url(../imgs/menu.svg);
+
+        &:focus {
+            outline: 0;
+        }
+
+        &.close {
+            background-image: url(../imgs/close.svg);
+        }
+    }
+
+    .search {
+        position: relative;
+        display: inline-block;
+        width: $first-column;
+        width: width(6); // PROVISÓRIO: Corrigir após os links com idiomas voltarem
+        visibility: hidden; // PROVISÓRIO: Corrigir após ser implementado
+        margin-left: gap(1);
+    }
+
+    $termos-height: 29px;
+
+    #termos {
+        @include placeholder($main-beige);
+        width: 100%;
+        font-size: $main-font-size;
+        background-color: transparent;
+        border: 2px solid $main-beige;
+        padding: 4px $termos-height 4px 8px;
+    }
+
+    input[type=submit] {
+        $padding: 6px;
+        $size: $termos-height - $padding;
+
+        position: absolute;
+        z-index: 1;
+        width: $size;
+        height: $size;
+        top: $padding;
+        right: $padding;
+        border: 0;
+        background-color: transparent;
+        background-image: url(../imgs/search.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .languages {
+        display: inline-block;
+        font-size: $main-font-size;
+        font-size: 5.625vw;
+        width: 100% - gap(2) - $first-column;
+        text-align: right;
+
+        a {
+            text-decoration: underline;
+            color: $main-red;
+        }
+
+        .selected {
+            color: $main-beige;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    }
+
+    @media (min-width: $x-small) {
+        .horizontal {
+            width: width(3);
+        }
+
+        button {
+            width: width(.7);
+            padding-top: width(.7);
+            float: right;
+            margin-left: 0;
+            margin-right: gap(1);
+            margin-top: .75%;
+        }
+
+        .date {
+            @include sans-semibold;
+            display: inline-block;
+            font-size: 16px;
+            font-size: 3.33vw;
+            margin-left: gap(1);
+            color: $main-red;
+        }
+
+        $search-width: width(3);
+
+        .search {
+            width: $search-width;
+        }
+
+        .languages {
+            width: 100% - $search-width - gap(2);
+            font-size: 26px;
+        }
+    }
+
+    @media (min-width: $small) {
+        position: relative;
+        padding-top: $header-padding;
+        padding-bottom: $header-padding;
+
+        .horizontal {
+            display: none;
+        }
+
+        button {
+            display: none;
+        }
+
+        .vertical {
+            display: inline-block;
+            position: absolute;
+            left: $header-padding;
+            width: 22%;
+            z-index: 43;
+        }
+
+        .date {
+            position: absolute;
+            left: width(2) + 5%;
+            margin: 0;
+            font-size: 17px;
+            font-size: 2.22vw;
+            z-index: 43;
+            top: -5px;
+        }
+    }
+
+    @media (min-width: $medium) {
+        .vertical {
+            width: 150px;
+            left: $header-padding;
+        }
+
+        .date {
+            font-size: 24px;
+            font-size: 2.34375vw;
+            left: 22.5%;
+            top: 10%;
+        }
+    }
+
+    @media (min-width: $large) {
+        .date {
+            font-size: 28.125px;
+            top: 10px;
+        }
+    }
+
+    @media (min-width: $x-large) {
+        .vertical {
+            display: none;
+        }
+
+        .horizontal {
+            display: inline-block;
+            width: 460px;
+            position: absolute;
+            left: gapPixels(1, $x-large);
+            z-index: 43;
+            margin: 0;
+            top: 17px;
+        }
+
+        .date {
+            top: 7px;
+            left: 540px;
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Menu */
+/*----------------------------------------------------------------------------*/
+
+/* FIXME: Hover state*/
+header menu {
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 42;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+
+    .options {
+        padding-top: gap(2);
+        padding-bottom: gap(2);
+        background-color: $main-gray;
+        font-size: 0;
+    }
+
+    $menu-width: 240px;
+    $menu-indent: 40px;
+
+    .nav {
+        h1, a {
+            font-weight: 400;
+        }
+
+        .selected {
+            font-weight: 600;
+            border-bottom: 3px solid $main-beige;
+        }
+    }
+
+    ol {
+        background-color: $main-gray;
+        padding: 0 0 gap(.1) 0;
+        width: $menu-width;
+        float: right;
+    }
+
+    a {
+        @include sans-regular;
+        font-style: normal;
+        text-decoration: none;
+        letter-spacing: 0;
+    }
+
+    li, li a {
+        display: block;
+    }
+
+    li a, li h1 {
+        cursor: pointer;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        font-size: 22px;
+        margin: 0;
+    }
+
+    > li a, > li h1 {
+        font-weight: 600;
+    }
+
+    li {
+        margin: 0 $menu-indent gap(3) gap(3);
+        font-size: $main-font-size;
+        text-align: right;
+
+        ol {
+            display: none;
+            margin-top: gap(3);
+            margin-bottom: gap(3);
+            width: $menu-width - $menu-indent;
+
+            li {
+                margin-bottom: gap(2);
+                margin-right: 20px;
+
+                h1, a {
+                    font-size: 16px;
+                }
+            }
+
+            &.show {
+                display: block;
+            }
+        }
+
+        h1, a {
+        }
+    }
+
+    @media (min-width: $x-small) {
+        .options {
+            padding-top: gap(1);
+            padding-bottom: gap(1);
+            background-color: $main-gray;
+            font-size: 0;
+        }
+    }
+
+    @media (min-width: $small) {
+        display: inline-block;
+        position: relative;
+
+        .options {
+            width: width(2.5);
+            position: absolute;
+            right: $header-padding;
+            padding: 0;
+        }
+
+        .search {
+            width: 75%;
+            width: calc(100% - 80px);
+            width: 100%; // PROVISÓRIO: Corrigir após os links com idiomas voltem
+            margin-left: 0;
+        }
+
+        .languages {
+            font-size: 18px;
+            width: auto;
+            margin-left: 25px;
+        }
+
+        ol {
+            float: none;
+            width: 100%;
+            text-align: right;
+            padding-top: 10%;
+            padding-right: $header-padding;
+
+            > li {
+                display: inline-block;
+                margin: 0;
+                margin-left: gap(1.2);
+            }
+        }
+
+        li {
+            h1, a {
+                font-size: 20px;
+                font-size: 2.5vw;
+                margin: 0;
+            }
+
+            ol {
+                position: absolute;
+                padding: 30px 0 0 10px;
+                margin: 0;
+            }
+
+            li {
+                display: block;
+                text-align: left;
+            }
+        }
+    }
+
+    @media (min-width: $medium) {
+        .options {
+            width: 320px;
+            right: $header-padding;
+        }
+
+        ol {
+            padding-top: 55px;
+            padding-right: $header-padding;
+
+            li {
+                margin-left: 40px;
+
+                li {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        li {
+            h1, a {
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+    }
+
+    @media (min-width: $x-large) {
+        ol {
+            padding-right: gapPixels(1, $x-large);
+        }
+
+        .options {
+            right: gapPixels(1, $x-large);
+        }
+    }
+}

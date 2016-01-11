@@ -1,0 +1,72 @@
+[
+    {
+        "name": "bolt/editable",
+        "version": "v2.0.2",
+        "version_normalized": "2.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rixbeck/bolt-extension-editable.git",
+            "reference": "3dd38ffdc15758ad2e89714712d90d98d4bfd1f8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rixbeck/bolt-extension-editable/zipball/3dd38ffdc15758ad2e89714712d90d98d4bfd1f8",
+            "reference": "3dd38ffdc15758ad2e89714712d90d98d4bfd1f8",
+            "shasum": ""
+        },
+        "require": {
+            "bolt/bolt": ">=2.0.0,<3.0.0",
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "rixbeck/bolt-tasks": "dev-master"
+        },
+        "time": "2015-01-01 14:47:49",
+        "type": "bolt-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.*-dev"
+            },
+            "bolt-screenshots": [
+                "editable-0.png",
+                "editable-1.png",
+                "editable-2.png",
+                "editable-3.png",
+                "editable-4.png"
+            ]
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "init.php"
+            ],
+            "psr-4": {
+                "Bolt\\Extension\\Bolt\\Editable\\": [
+                    "",
+                    "src"
+                ]
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Rix Beck",
+                "email": "rix@neologik.hu"
+            }
+        ],
+        "description": "In-place editor for content editing on frontend",
+        "keywords": [
+            "UI",
+            "content editing",
+            "editor",
+            "inplace editor",
+            "wyswyg"
+        ],
+        "support": {
+            "source": "https://github.com/rixbeck/bolt-extension-editable/tree/v2.0.2",
+            "issues": "https://github.com/rixbeck/bolt-extension-editable/issues"
+        }
+    }
+]

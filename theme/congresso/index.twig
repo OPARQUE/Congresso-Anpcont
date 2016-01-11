@@ -1,0 +1,62 @@
+{% include '_header.twig' %}
+
+<main class="index">
+    {# Slider #}
+    {% setcontent slides = "/slides/" %}
+
+    {% if slides|length %}
+    <div class="container-slider">
+        <div class="slider">
+
+            {% for slide in slides %}
+            <div class="slide">
+                <p><span>{{ slide.title|e }}</span></p>
+
+                {% if slide.button_main_text %}
+                <a class="button featured" href="{{ slide.button_main_link|e('html_attr') }}">{{ slide.button_main_text|e }}</a>
+                {% endif %}
+
+                {% if slide.button_main_text %}
+                <a class="button" href="{{ slide.button_secondary_link|e('html_attr') }}">{{ slide.button_secondary_text|e }}</a>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endif %}
+
+    {# Conteúdo principal #}
+    {% if record.content %}
+    <article data-bolt-field="content" class="bolt-content">
+        {{ record.content|replace({'style=': 'no-style='})|raw }}
+    </article>
+    {% endif %}
+
+    {# Faixa #}
+    {% autoescape %}
+    <article class="banner tematica">
+        <div class="container-padding">
+            <span data-bolt-field="faixa_subtitle" class="subtitle">{{ record.faixa_subtitle|e }}</span>
+            <h1 data-bolt-field="faixa_title">{{ record.faixa_title|e }}</h1>
+
+            {% if record.faixa_button_text is defined %}
+            <a data-bolt-field="faixa_button_text" class="button" href="{{ record.faixa_button_link|e('html_attr') }}">{{ record.faixa_button_text|e }}</a>
+            {% endif %}
+        </div>
+    </article>
+    {% endautoescape %}
+
+    {# Calendário #}
+    {% if record.calendario %}
+    {% setcontent calendario = "/page/calendario" %}
+    {% if calendario and calendario.content %}
+    <div class="bolt-calendario">
+        {{ calendario.content|replace({'style=': 'no-style='})|raw }}
+    </div>
+    {% endif %}
+    {% endif %}
+</main>
+
+{% include '_footer.twig' %}

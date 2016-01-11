@@ -1,0 +1,77 @@
+﻿@import "utils.scss";
+
+/*----------------------------------------------------------------------------*/
+/* Banner */
+/*----------------------------------------------------------------------------*/
+
+.banner {
+    background-color: $main-gray;
+    color: white;
+    margin: gap(2) 0;
+
+    .container {
+        padding: gap(1) 0;
+
+        @media (min-width: $medium) {
+            padding: gapPixels(1, $medium) 0;
+        }
+    }
+
+    .subtitle {
+        display: block;
+        font-size: 22px;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-top: 10px;
+    }
+
+    p {
+        @include serif-italic;
+        font-size: 16px;
+    }
+
+    a {
+        display: inline-block;
+        border: 2px solid white;
+        margin-top: 30px;
+        padding: 10px;
+        background-color: transparent;
+    }
+
+    @media (min-width: $x-small) {
+        margin: gap(1) 0;
+    }
+
+    @media (min-width: $small) {
+        &:not(.no-gene) .container {
+            padding-right: 0;
+            padding-left: 110px;
+            background-image: url(../imgs/gene-beige.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: gap(1) center;
+        }
+    }
+
+    @media (min-width: $medium) {
+        margin: gapPixels(1, $medium) 0;
+    }
+}
+
+.banner.featured {
+    background-color: $main-beige;
+    background-image: url(../imgs/ribeirao.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $main-red;
+
+    @media (min-width: $small) {
+        &:not(.no-gene) .container {
+            background-image: url(../imgs/gene-red.svg);
+        }
+    }
+}

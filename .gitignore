@@ -279,3 +279,23 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# =========================
+# Bolt.cm
+# =========================
+
+# Ignora os arquivos de configuração local
+app/config/*_local.yml
+
+# Ignora o cache
+app/cache/*
+!app/cache/index.html
+
+# Ignora o banco de dados
+app/database/*
+!app/database/index.html
+
+# Ignora arquivos enviados pela interface do site
+files/*
+!files/index.html
+!files/marcas

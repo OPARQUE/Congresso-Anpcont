@@ -1,0 +1,207 @@
+﻿@import "utils.scss";
+
+/*----------------------------------------------------------------------------*/
+/* Folder */
+/*----------------------------------------------------------------------------*/
+
+/* FIXME: Print*/
+.folder {
+    @include columns(6);
+    font-size: 0;
+
+    > h1 {
+        @include serif-bold;
+        position: relative;
+        display: block;
+        background-color: $main-gray;
+        color: $main-beige;
+        padding: 20px 30px 50px 30px;
+        font-size: 26px;
+        margin: 0;
+
+        .more {
+            @include sans-regular;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            color: $main-red;
+            left: 30px;
+            bottom: 20px;
+
+            span {
+                text-decoration: underline;
+            }
+        }
+
+        @media (min-width: $medium) {
+            padding: 20px 30px;
+
+            .more {
+                left: auto;
+                right: gap(1);
+            }
+        }
+    }
+
+    ol, ul {
+        list-style-type: none;
+    }
+
+    li {
+        font-size: $main-font-size;
+        margin-bottom: 30px;
+
+        &:first-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .tab {
+        display: table;
+        width: 100%;
+        background-color: $main-beige;
+        padding: 10px;
+        
+        ol, ul {
+            display: table-row;
+
+            > li {
+                @include serif-bold;
+                vertical-align: middle;
+                font-size: 16px;
+                display: table-cell;
+                width: 1%;
+                text-align: center;
+                position: relative;
+                padding: 5px;
+                cursor: pointer;
+                border: 6px solid $main-beige;
+
+                &:hover {
+                    background-color: $light-beige;
+                }
+
+                &:after {
+                    position: absolute;
+                    content: "";
+                    width: 1px;
+                    background-color: $main-red;
+                    top: 10%;
+                    height: 80%;
+                    right: -6px;
+                    z-index: 1;
+                }
+
+                &:last-child:after {
+                    width: 0;
+                }
+
+                @media (min-width: $x-small) {
+                    font-size: 3.5vw;
+                    padding-left: .5em;
+                    padding-right: .5em;
+                }
+
+                @media (min-width: 600px) {
+                    font-size: 21px;
+                }
+            }
+        }
+
+        .selected {
+            background-color: $main-red;
+            color: $main-beige;
+
+            &:hover {
+                background-color: $main-red;
+            }
+        }
+    }
+
+    .content {
+        background-color: $main-beige;
+        padding: gap(.5) gap(1);
+        position: relative;
+
+        &:after {
+            position: absolute;
+            content: "";
+            height: 1px;
+            width: 100% - gap(2);
+            background-color: $main-red;
+            top: .8vw;
+            left: gap(1);
+            z-index: 1;
+        }
+
+        > li {
+            display: none;
+        }
+
+        .selected {
+            display: block;
+        }
+
+        h1 {
+            @include serif-bold-italic;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 20px;
+
+            &:not(:first-child) {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    @media (min-width: $medium) {
+        $real-size: (100% - gap(2)) / 100%;
+
+        .tab, .content {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .tab {
+            width: (width(1) + gap(.5)) / $real-size;
+            position: relative;
+
+            > ol {
+                width: 100%;
+
+                &:after {
+                    position: absolute;
+                    content: "";
+                    width: 1px;
+                    background-color: $main-red;
+                    height: calc(100% - 20px);
+                    top: 10px;
+                    right: 0;
+                }
+
+                & > li {
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: right;
+
+                    &:after {
+                        height: 1px;
+                        width: 100%;
+                        top: auto;
+                        bottom: -16px;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        .content {
+            width: (width(5) + gap(.5)) / $real-size;
+
+            &:after {
+                width: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="{{ htmllang() }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {# make sure we always display a proper title: The record's title if there is one, appended with the
+    sitename. If there is no title, we append the sitename with the payoff, if there is one. #}
+    <title>
+        {% if record.title is defined and record.title %}
+        {{ record.title|striptags }} |
+        {% endif %}
+
+        {{ app.config.get('general/sitename') }}
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:700,700italic,400italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ paths.theme }}scripts/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="{{ paths.theme }}scripts/slick/slick-theme.css" />
+
+    <link rel="stylesheet" href="{{ paths.theme }}css/main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="http://congressos.anpcont.org.br/x/">
+                <img class="vertical" src="{{ paths.theme }}imgs/xcongresso-red-vertical.svg" alt="Marca da Anpcont" />
+                <img class="horizontal" src="{{ paths.theme }}imgs/xcongresso-red-horizontal.svg" alt="Marca da Anpcont" />
+            </a>
+
+            <div class="date">
+                4 a 7 de junho de 2016<br />
+                RIBEIRÃO PRETO - SP
+            </div>
+
+            <button class="menu-button"></button>
+
+            <menu>
+                <div class="options">
+                    <form class="search" method="get" action="/busca">
+                        <input id="termos" name="termos" type="text" placeholder="Busca" />
+                        <input type="submit" value="" />
+                    </form>
+
+                    <!--<div class="languages">
+                        <a class="selected">pt</a> / <a>en</a>
+                    </div>-->
+                </div>
+
+                <ol class="nav">
+                    <li>
+                        <h1>Sobre</h1>
+                        <ol>
+                            <li><a href="congresso">O Congresso</a></li>
+                            <li><a href="tematica">Temática do Evento</a></li>
+                            <li><a href="organizacao">Organização, Apoio e Patrocínio</a></li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <h1>Evento</h1>
+                        <ol>
+                            <li><a href="http://intranet.anpcont.org.br/work/submit?event_edition_id=2&type_work_id=5" target="_blank">Inscrição</a></li>
+                            <li><a href="calendario">Calendário</a></li>
+                            <!--<li><a>Programação</a></li>-->
+                            <!--<li><a>Hospedagem</a></li>-->
+                            <!--<li><a>Certificados</a></li>-->
+                            <!--<li><a>Fotos</a></li>-->
+                            <!--<li><a>Workshops</a></li>-->
+                            <!--<li><a>Iniciação Científica</a></li>-->
+                            <!--<li><a>Consórcio Doutoral e Mestral</a></li>-->
+                        </ol>
+                    </li>
+
+                    <li>
+                        <h1>Trabalhos</h1>
+                        <ol>
+                            <li><a href="submissao">Submissão</a></li>
+                            <!--<li><a>Instruções para apresentação</a></li>-->
+                            <li><a href="julgamento">Critérios de Julgamento</a></li>
+                            <li><a href="comite">Comitê Científico</a></li>
+                            <!--<li><a>Comissão Avaliadora Ad Hoc</a></li>-->
+                            <!--<li><a>Anais</a></li>-->
+                        </ol>
+                    </li>
+
+                    <!--<li>
+                        <h1>Premiação</h1>
+                        <ol>
+                            <li><a>Melhor trabalho</a></li>
+                            <li><a>Trabalhos por área</a></li>
+                        </ol>
+                    </li>-->
+
+                    <li><a href="contato">Contato</a></li>
+                </ol>
+            </menu>
+        </div>
+    </header>

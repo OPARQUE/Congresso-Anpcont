@@ -1,0 +1,873 @@
+﻿@import "utils.scss";
+
+/*----------------------------------------------------------------------------*/
+/* Index */
+/*----------------------------------------------------------------------------*/
+
+main.index {
+    .container-slider {
+        max-width: $x-large + 130px;
+        margin: 0 auto;
+    }
+
+    .slider {
+        list-style-type: none;
+        padding: 0;
+        width: 100% - gap(4);
+        margin: gap(1) gap(2);
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            min-height: 75vw;
+            background-image: url(../imgs/slider1.jpg);
+            background-size: cover;
+            background-position: right top;
+            margin: 0;
+            padding: 32px;
+            font-weight: 600;
+            color: $main-gray;
+
+            p {
+                font-size: 16px;
+                font-size: 4.4vw;
+
+                span {
+                    @include serif-bold-italic;
+                    font-size: 26px;
+                    font-size: 6.5vw;
+                    color: $main-red;
+                    background-color: $main-beige;
+                    padding: 5px 15px;
+                    margin: 20px 0;
+                    display: inline-block;
+                }
+            }
+
+            .button {
+                position: absolute;
+                font-size: 16px;
+                font-size: 4.5vw;
+                font-weight: 400;
+                color: $main-red;
+                left: gap(1);
+                bottom: gap(1);
+                border-color: $main-red;
+
+                &.featured {
+                    font-size: 20px;
+                    font-size: 5.5vw;
+                    font-weight: 600;
+                    color: $main-beige;
+                    bottom: 20%;
+                    border-color: $main-gray;
+                }
+            }
+
+            @mixin button-font-size($breakpoint, $size) {
+                @media (min-width: $breakpoint) {
+                    .button {
+                        font-size: $size;
+
+                        &.featured {
+                            font-size: 1.2 * $size;
+                        }
+                    }
+                }
+            }
+
+            @include button-font-size($x-small, 3.5vw);
+            @include button-font-size(640px, 2.5vw);
+
+            @media (min-width: $x-small) {
+                p {
+                    font-size: 3.4vw;
+                }
+            }
+
+            @media (min-width: $small) {
+                min-height: 50vw;
+
+                p {
+                    font-size: 3.5vw;
+
+                    span {
+                        font-size: 4.6875vw;
+                    }
+                }
+            }
+
+            @include button-font-size($small, 18px);
+
+            @media (min-width: $medium) {
+                min-height: $medium / 3;
+
+                p {
+                    font-size: 36px;
+
+                    span {
+                        font-size: 48px;
+                    }
+                }
+            }
+        }
+
+        .slick-next, .slick-prev {
+            $proportion: 25 / 15;
+
+            $width: 15px;
+            width: $width;
+            height: $width * $proportion;
+
+            $width: $width / 320 * 100 / 1px * 1vw;
+            width: $width;
+            height: $width * $proportion;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            &:before {
+                content: "";
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+            }
+
+            @media (min-width: 640px) {
+                $width: 25px;
+                width: $width;
+                height: $width * $proportion;
+            }
+        }
+
+        .slick-next {
+            background-image: url(../imgs/arrow-next.svg) !important;
+            right: -7.5%;
+        }
+
+        .slick-prev {
+            background-image: url(../imgs/arrow-prev.svg) !important;
+            left: -7.5%;
+        }
+
+        @media (min-width: 640px) {
+
+            .slick-next {
+                right: -35px;
+            }
+
+            .slick-prev {
+                left: -35px;
+            }
+        }
+
+        @media (min-width: $medium) {
+            margin-bottom: 0;
+        }
+    }
+
+    .detalhes {
+        text-align: center;
+
+        a {
+            display: block;
+
+
+            @media (min-width: $x-small) {
+                max-width: $x-small - gapPixels(3, $x-small);
+                margin: gap(1) auto 0 auto;
+            }
+
+            @media (min-width: $medium) {
+                width: width(2);
+                margin-right: gap(1);
+            }
+        }
+    }
+
+
+
+    .banner.tematica {
+        h1 {
+            font-size: 26px;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        @media (min-width: $medium) {
+            .container-padding {
+                padding-left: 130px;
+            }
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* O Congresso */
+/*----------------------------------------------------------------------------*/
+
+main.congresso {
+    .introducao {
+        img {
+            display: inline-block;
+            width: width(6);
+            margin-bottom: gap(1);
+
+            @media (min-width: $small) {
+                float: left;
+                width: width(4);
+            }
+
+            @media (min-width: 1200px) {
+                width: width(3);
+            }
+        }
+
+        a {
+            margin-top: 20px;
+            display: block;
+
+            @media (min-width: $x-small) {
+                display: inline-block;
+            }
+        }
+    }
+
+    .objetivo, .comissao {
+        @media (min-width: $small) {
+            @include columns(3);
+            display: inline-block;
+            margin-right: 0;
+        }
+
+        @media (min-width: $medium) {
+            @include columns(2);
+        }
+    }
+
+    .atividades-data {
+        margin-left: gap(1);
+    }
+
+    .atividades-folder .folder {
+        margin-top: 10px;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Organização */
+/*----------------------------------------------------------------------------*/
+
+main.organizacao {
+    .vertical, .horizontal {
+        @include columns(6);
+    }
+
+    .horizontal {
+        display: none;
+    }
+
+    .vertical {
+        margin-bottom: gap(1);
+    }
+
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    p {
+        @include columns(6);
+        font-size: 20px;
+    }
+
+    ul {
+        margin-top: gap(2);
+        margin-bottom: gap(2);
+    }
+
+    dt, dd {
+        @include columns(6);
+        padding-left: 70px;
+    }
+
+    dt {
+        font-size: 26px;
+        background-position: left center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .missao dt {
+        background-image: url(../imgs/right.svg);
+    }
+
+    .visao dt {
+        background-image: url(../imgs/eye.svg);
+    }
+
+    .valores dt {
+        background-image: url(../imgs/diamond.svg);
+    }
+
+    .apoio {
+        background-color: transparent;
+        margin-right: gap(1);
+        padding-top: 0;
+    }
+
+    @media (min-width: $small) {
+        .vertical {
+            display: none;
+        }
+
+        p, .horizontal {
+            max-width: $small;
+            margin: 0 auto;
+        }
+
+        .horizontal {
+            display: block;
+            margin-bottom: 25px;
+        }
+    }
+
+    @media (min-width: 960px) {
+        ul {
+            font-size: 0;
+            margin-bottom: gap(1);
+        }
+
+        li {
+            @include columns(2);
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    @media (min-width: $large) {
+        li {
+            width: width(2.2);
+
+            &:last-child {
+                width: width(1);
+            }
+        }
+    }
+}
+/*----------------------------------------------------------------------------*/
+/* Temática */
+/*----------------------------------------------------------------------------*/
+main.tematica {
+    font-size: 0;
+
+    .banner h1 {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        margin-top: gap(1);
+
+        @media (min-width: $small) {
+        }
+    }
+
+    .area {
+        @include serif-regular;
+        font-size: 22px;
+        margin-top: 30px;
+    }
+
+    .coordenador {
+        @include serif-italic;
+        margin-top: 5px;
+    }
+
+    .descricao {
+        margin-top: 10px;
+    }
+
+    .areas div {
+        @media (min-width: $small) {
+            margin: 0;
+            @include columns(3);
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        @media (min-width: $large) {
+
+            @include columns(2);
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Julgamento */
+/*----------------------------------------------------------------------------*/
+
+main.julgamento {
+    td.no-value {
+        content: "";
+        background-color: $light-gray;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Comite Científico */
+/*----------------------------------------------------------------------------*/
+
+main.comite {
+    td .membro {
+        font-weight: 600;
+        display: block;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Submissão de Trabalhos */
+/*----------------------------------------------------------------------------*/
+
+main.submissao {
+    .button-container {
+        text-align: center;
+    }
+
+    a.button {
+        display: block;
+        margin-top: gap(2);
+
+        @media (min-width: $small) {
+            margin-top: gap(1);
+        }
+
+        @media (min-width: $small) {
+            margin-top: 0;
+            display: inline-block;
+            padding: 10px 30px;
+        }
+    }
+
+    .banner {
+        p {
+            font-size: 24px;
+            padding: 0 gap(1);
+            margin: 0 auto;
+        }
+
+        @media (min-width: $small) {
+            .container-padding {
+                padding: 20px 0;
+            }
+        }
+    }
+
+    .apa {
+        margin-top: 20px;
+
+        h1 {
+            padding: 0 gap(1);
+        }
+
+        div {
+            @include columns(6);
+        }
+
+        @media (min-width: $medium) {
+            h2 {
+                margin-top: 0;
+            }
+
+            div {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .citacoes {
+                @include columns(2);
+            }
+
+            .exemplos {
+                @include columns(4);
+            }
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Folders */
+/*----------------------------------------------------------------------------*/
+
+.folder.calendario, .folder.programacao, .folder.submissao, .folder.atividades {
+    margin: gap(1) auto;
+
+    .tab li {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-size: 2.8vw;
+        padding: 2px;
+
+        @media (min-width: 640px) {
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        @media (min-width: $small) {
+            br {
+                display: none;
+            }
+        }
+
+        @media (min-width: $medium) {
+            width: 100%;
+            padding: 5px 10px 5px 5px;
+            margin: 10px 0 10px 0;
+        }
+    }
+
+    .content {
+        ol {
+            padding: 0;
+        }
+
+        > li > ol li {
+            margin-bottom: 40px;
+            position: relative;
+
+            &:after {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 1px;
+                background-color: black;
+                bottom: -20px;
+                left: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+
+                &:after {
+                    width: 0;
+                }
+            }
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Calendário */
+/*----------------------------------------------------------------------------*/
+
+.folder.calendario {
+    .date, .description {
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .date {
+        width: width(1);
+        text-align: center;
+    }
+
+    .day, .week, .month {
+        display: block;
+    }
+
+    .day {
+        font-size: 36px;
+        font-size: 11.25vw;
+    }
+
+    .week {
+        @include serif-italic;
+        font-size: 14px;
+        font-size: 3.125vw;
+    }
+
+    .month {
+        background-color: $main-red;
+        padding: 10px;
+        color: $main-beige;
+    }
+
+    .description {
+        margin-left: gap(1);
+        width: width(5) + gap(1);
+    }
+
+    @media (min-width: $x-small) {
+        .day {
+            font-size: 54px;
+        }
+
+        .week {
+            font-size: 18px;
+        }
+    }
+
+    @mixin date-size ($breakpoint, $date-width) {
+        @media (min-width: $breakpoint) {
+            .date {
+                width: width($date-width);
+            }
+
+            .description {
+                width: width(6 - $date-width);
+            }
+        }
+    }
+
+    @include date-size($medium, .75);
+    @include date-size($large, .6);
+}
+/*----------------------------------------------------------------------------*/
+/* Programação */
+/*----------------------------------------------------------------------------*/
+.folder.programacao {
+    .time, .description {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    $time-width: 1.5;
+
+    .time {
+        width: width($time-width);
+        font-size: 14px;
+        font-size: 4.375vw;
+        margin-left: gap(1);
+        text-align: center;
+    }
+
+    .description {
+        display: inline-block;
+        width: width(6 - $time-width);
+        margin-left: gap(1);
+    }
+
+    .from, .to {
+        @include serif-italic;
+        font-size: 18px;
+        font-size: 5.625vw;
+    }
+
+    @media (min-width: $x-small) {
+        .time {
+            font-size: 21px;
+        }
+
+        .from, .to {
+            font-size: 27px;
+        }
+    }
+
+    @mixin time-size ($breakpoint, $time-width) {
+        @media (min-width: $breakpoint) {
+            .time {
+                //margin-left: 0;
+                width: $time-width;
+            }
+
+            .description {
+                width: 100% - gap(3) - $time-width;
+            }
+        }
+    }
+
+    @include time-size(640px, width(1));
+    @include time-size($small, width(1));
+
+    @include time-size($medium, width(1.5));
+
+    @media (min-width: $medium) {
+        .time br {
+            display: none;
+        }
+
+        .from, .to {
+            font-size: 22px;
+        }
+    }
+
+    @include time-size($medium, width(1.5));
+
+    @media (min-width: $medium) {
+        .time br {
+            display: none;
+        }
+
+        .from, .to {
+            font-size: 22px;
+        }
+    }
+
+    @include time-size($x-large, width(1.2));
+}
+
+/*----------------------------------------------------------------------------*/
+/* Folders */
+/*----------------------------------------------------------------------------*/
+
+.folder.atividades {
+    .tab li {
+        font-size: 2.7vw;
+
+        @media (min-width: 640px) {
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        @media (min-width: $medium) {
+            font-size: 13px;
+            width: 100%;
+            padding: 5px 10px 5px 5px;
+            margin: 10px 0 10px 0;
+        }
+    }
+
+    .content {
+        .title {
+            @include serif-bold-italic;
+            font-size: 22px;
+            padding-top: gap(1);
+        }
+
+        li {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 640px) {
+            .title {
+                padding-top: gap(.5);
+            }
+        }
+
+        @media (min-width: $medium) {
+            padding-top: 0;
+
+            .title {
+                padding-top: gap(1);
+            }
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+/* Contato */
+/*----------------------------------------------------------------------------*/
+
+.contato {
+    .banner {
+        color: black;
+        background-color: $main-beige;
+
+        .info {
+            @include sans-italic;
+            font-size: 20px;
+        }
+
+        .social {
+            a {
+                @include sans-semibold;
+                font-style: normal;
+                text-decoration: none;
+                background-color: transparent;
+                border-width: 0;
+                background-repeat: no-repeat;
+                background-size: contain;
+                padding: 4px;
+                padding-left: 50px;
+                margin-top: 15px;
+            }
+
+            .mail {
+                background-image: url(../imgs/mail-black.svg);
+                background-position: left center;
+            }
+
+            .facebook {
+                background-image: url(../imgs/facebook-black.svg);
+                background-position: 7px center;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .info, .social {
+                @include columns(3);
+                display: inline-block;
+                margin-right: 0;
+                vertical-align: middle;
+            }
+
+            .social {
+                padding-bottom: 20px;
+            }
+        }
+
+        @media (min-width: $medium) {
+            .info, .social {
+                font-size: 28px;
+            }
+
+            .social {
+                a {
+                    padding-left: 75px;
+                }
+            }
+        }
+    }
+
+    .diretores {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            width: 100%;
+            max-width: 310px;
+            margin: 40px auto;
+            vertical-align: top;
+        }
+
+        .name, .cargo, .mail {
+            display: block;
+            text-align: left;
+        }
+
+        .name {
+            @include serif-bold;
+            font-size: 24px;
+        }
+
+        .cargo {
+            @include serif-italic;
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .mail {
+            @include sans-semibold;
+            font-style: normal;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        @media (min-width: 640px){
+            li {
+                @include columns(3);
+                
+                display: inline-block;
+            }
+        }
+
+        @media (min-width: $x-large){
+            li {
+                width: width(1.5);
+            }
+        }
+    }
+}
