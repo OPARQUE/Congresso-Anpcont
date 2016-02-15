@@ -188,6 +188,8 @@ footer .organizador {
 
     img {
         @include columns(6);
+        margin-top: 25px;
+        margin-bottom: 15px;
     }
 
     p {
@@ -289,18 +291,20 @@ footer .organizador {
         }
 
         .vertical {
-            $margin: .75;
+            $margin: 1.5;
 
             display: inline-block;
+            margin-top: 0;
             width: width(3) - gap(2 * $margin);
             margin-left: gap(1) + gap($margin);
             margin-right: gap($margin);
-            vertical-align: top;
+            vertical-align: middle;
         }
 
         p {
             width: width(3);
             margin-top: 0;
+            vertical-align: middle;
         }
 
         .social {
@@ -326,6 +330,7 @@ footer .organizador {
         .vertical, p, .social {
             @include columns(2);
             text-align: left;
+            vertical-align: top;
         }
 
         .social, .mail {

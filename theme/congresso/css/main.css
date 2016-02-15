@@ -1404,7 +1404,9 @@ footer .organizador {
   position: relative; }
   footer .organizador img {
     width: 92%;
-    margin-left: 4%; }
+    margin-left: 4%;
+    margin-top: 25px;
+    margin-bottom: 15px; }
   footer .organizador p {
     font-family: "Lora", serif;
     font-weight: 400;
@@ -1476,13 +1478,15 @@ footer .organizador {
       display: none; }
     footer .organizador .vertical {
       display: inline-block;
-      width: 38%;
-      margin-left: 7%;
-      margin-right: 3%;
-      vertical-align: top; }
+      margin-top: 0;
+      width: 32%;
+      margin-left: 10%;
+      margin-right: 6%;
+      vertical-align: middle; }
     footer .organizador p {
       width: 44%;
-      margin-top: 0; }
+      margin-top: 0;
+      vertical-align: middle; }
     footer .organizador .social {
       width: 92%;
       text-align: center; }
@@ -1497,7 +1501,8 @@ footer .organizador {
     footer .organizador .vertical, footer .organizador p, footer .organizador .social {
       width: 28%;
       margin-left: 4%;
-      text-align: left; }
+      text-align: left;
+      vertical-align: top; }
     footer .organizador .social, footer .organizador .mail {
       margin-top: 0; } }
   @media (min-width: 1200px) {
