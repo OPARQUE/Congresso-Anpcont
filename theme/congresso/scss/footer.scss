@@ -163,11 +163,10 @@ footer .newsletter {
 
             &[src$="#{$img}.png"] {
                 max-width: $size;
-
-                @media (min-width: 1060px) {
+                /*@media (min-width: 1060px) {
                     width: $size / 740px * 74%;
                     max-width: 4242px;
-                }
+                }*/
             }
         }
     }
@@ -229,7 +228,7 @@ footer .organizador {
         padding-left: 35px;
     }
 
-    @media (min-width: $x-small) {
+    @media (min-width: 425px) {
         p {
             margin: 40px gap(1) 25px gap(1);
         }
@@ -321,7 +320,21 @@ footer .organizador {
         }
     }
 
-    @media (min-width: $medium) {
+    @media (min-width: 960px) {
+        .vertical {
+            display: none;
+        }
+
+        .horizontal, p {
+            @include columns(3);
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: left;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    }
+    /*@media (min-width: $medium) {
         .vertical, .facebook {
             margin-left: 0;
             margin-right: 0;
@@ -336,11 +349,32 @@ footer .organizador {
         .social, .mail {
             margin-top: 0;
         }
-    }
-
+    }*/
     @media (min-width: $large) {
+
+        .horizontal, p, .social {
+            @include columns(2);
+            text-align: left;
+            vertical-align: top;
+        }
+
+
+        .horizontal {
+            width: width(2) + gap(1);
+            margin-left: 0;
+
+        }
+
+        .facebook {
+            margin-left: 0;
+        }
+
+        .social, .mail {
+            margin-top: 0;
+        }
+
         img, p, .social {
-            padding: 0 gap(.5);
+            padding: 0;
         }
 
         a {
