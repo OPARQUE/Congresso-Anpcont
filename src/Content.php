@@ -210,6 +210,8 @@ class Content implements \ArrayAccess
                     case 'select':
                         if (is_array($this->values[$field])) {
                             $newvalue[$field] = json_encode($this->values[$field]);
+                        } else {
+                            $newvalue[$field] = $this->values[$field];
                         }
                         break;
 
@@ -587,8 +589,7 @@ class Content implements \ArrayAccess
             return false;
         }
 
-        if ((!$this->contenttype['viewless'])
-            && (!empty($this['templatefields']))
+        if ((!empty($this['templatefields']))
             && ($templateFieldsConfig = $this->app['config']->get('theme/templatefields'))) {
                 $template = $this->app['templatechooser']->record($this);
                 if (array_key_exists($template, $templateFieldsConfig)) {

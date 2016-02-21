@@ -225,6 +225,9 @@ The global command allows you to run other commands like `install`, `require`
 or `update` as if you were running them from the [COMPOSER_HOME](#composer-home)
 directory.
 
+This is merely a helper to manage a project stored in a central location that
+can hold CLI tools or Composer plugins that you want to have available everywhere.
+
 This can be used to install CLI utilities globally and if you add
 `$COMPOSER_HOME/vendor/bin` to your `$PATH` environment variable. Here is an
 example:
@@ -338,10 +341,21 @@ symfony/monolog-bridge requires monolog/monolog (>=1.2)
 symfony/symfony requires monolog/monolog (~1)
 ```
 
+If you want, for example, find any installed package that is **not** allowing
+Symfony version 3 or one of its components, you can run the following command:
+
+```sh
+php composer.phar depends symfony/symfony --with-replaces -im ^3.0
+```
+
 ### Options
 
 * **--link-type:** The link types to match on, can be specified multiple
   times.
+* **--match-constraint (-m):** Filters the dependencies shown using this constraint.
+* **--invert-match-constraint (-i):** Turns --match-constraint around into a blacklist
+  instead of a whitelist.
+* **--with-replaces:** Search for replaced packages as well.
 
 ## validate
 
@@ -399,7 +413,7 @@ If you have installed Composer for your entire system (see [global installation]
 you may have to run the command with `root` privileges
 
 ```sh
-sudo composer self-update
+sudo -H composer self-update
 ```
 
 ### Options
@@ -450,6 +464,12 @@ changes to the repositories section by using it the following way:
 
 ```sh
 php composer.phar config repositories.foo vcs https://github.com/foo/bar
+```
+
+If your repository requires more configuration options, you can instead pass its JSON representation :
+
+```sh
+php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.example.org/my-project/", "trunk-path": "master"}'
 ```
 
 ## create-project
@@ -582,6 +602,11 @@ To get more information about a certain command, just use `help`.
 php composer.phar help install
 ```
 
+## Command-line completion
+
+Command-line completion can be enabled by following instructions
+[on this page](https://github.com/bamarni/symfony-console-autocomplete).
+
 ## Environment variables
 
 You can set a number of environment variables that override certain settings.
@@ -656,9 +681,11 @@ The `COMPOSER_HOME` var allows you to change the Composer home directory. This
 is a hidden, global (per-user on the machine) directory that is shared between
 all projects.
 
-By default it points to `/home/<user>/.composer` on \*nix,
-`/Users/<user>/.composer` on OSX and
-`C:\Users\<user>\AppData\Roaming\Composer` on Windows.
+By default it points to `C:\Users\<user>\AppData\Roaming\Composer` on Windows
+and `/Users/<user>/.composer` on OSX. On *nix systems that follow the [XDG Base
+Directory Specifications](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html),
+it points to `$XDG_CONFIG_HOME/composer`. On other *nix systems, it points to
+`/home/<user>/.composer`.
 
 #### COMPOSER_HOME/config.json
 
@@ -684,6 +711,18 @@ By default it points to $COMPOSER_HOME/cache on \*nix and OSX, and
 
 This env var controls the time Composer waits for commands (such as git
 commands) to finish executing. The default value is 300 seconds (5 minutes).
+
+### COMPOSER_CAFILE
+
+By setting this environmental value, you can set a path to a certificate bundle
+file to be used during SSL/TLS peer verification.
+
+### COMPOSER_AUTH
+
+The `COMPOSER_AUTH` var allows you to set up authentication as an environment variable.
+The contents of the variable should be a JSON formatted object containing http-basic,
+github-oauth, ... objects as needed, and following the
+[spec from the config](06-config.md#gitlab-oauth).
 
 ### COMPOSER_DISCARD_CHANGES
 

@@ -14,6 +14,7 @@ namespace Composer\Downloader;
 
 use Composer\Config;
 use Composer\Cache;
+use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Package\PackageInterface;
 use Composer\Plugin\PluginEvents;
@@ -54,7 +55,7 @@ class FileDownloader implements DownloaderInterface
         $this->io = $io;
         $this->config = $config;
         $this->eventDispatcher = $eventDispatcher;
-        $this->rfs = $rfs ?: new RemoteFilesystem($io, $config);
+        $this->rfs = $rfs ?: Factory::createRemoteFilesystem($this->io, $config);
         $this->filesystem = $filesystem ?: new Filesystem();
         $this->cache = $cache;
 
@@ -140,9 +141,7 @@ class FileDownloader implements DownloaderInterface
                         if ((0 !== $e->getCode() && !in_array($e->getCode(), array(500, 502, 503, 504))) || !$retries) {
                             throw $e;
                         }
-                        if ($this->io->isVerbose()) {
-                            $this->io->writeError('    Download failed, retrying...');
-                        }
+                        $this->io->writeError('    Download failed, retrying...', true, IOInterface::VERBOSE);
                         usleep(500000);
                     }
                 }

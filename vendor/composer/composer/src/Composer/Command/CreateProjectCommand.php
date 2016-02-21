@@ -27,6 +27,7 @@ use Composer\Repository\CompositeRepository;
 use Composer\Repository\FilesystemRepository;
 use Composer\Repository\InstalledFilesystemRepository;
 use Composer\Script\ScriptEvents;
+use Composer\Util\Silencer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -35,7 +36,6 @@ use Symfony\Component\Finder\Finder;
 use Composer\Json\JsonFile;
 use Composer\Config\JsonConfigSource;
 use Composer\Util\Filesystem;
-use Composer\Util\RemoteFilesystem;
 use Composer\Package\Version\VersionParser;
 
 /**
@@ -90,7 +90,7 @@ To setup a developer workable version you should create the project using the so
 controlled code by appending the <info>'--prefer-source'</info> flag.
 
 To install a package from another repository than the default one you
-can pass the <info>'--repository-url=http://myrepository.org'</info> flag.
+can pass the <info>'--repository-url=https://myrepository.org'</info> flag.
 
 EOT
             )
@@ -224,10 +224,10 @@ EOT
         chdir($oldCwd);
         $vendorComposerDir = $composer->getConfig()->get('vendor-dir').'/composer';
         if (is_dir($vendorComposerDir) && $fs->isDirEmpty($vendorComposerDir)) {
-            @rmdir($vendorComposerDir);
+            Silencer::call('rmdir', $vendorComposerDir);
             $vendorDir = $composer->getConfig()->get('vendor-dir');
             if (is_dir($vendorDir) && $fs->isDirEmpty($vendorDir)) {
-                @rmdir($vendorDir);
+                Silencer::call('rmdir', $vendorDir);
             }
         }
 
@@ -239,7 +239,7 @@ EOT
         if (null === $repositoryUrl) {
             $sourceRepo = new CompositeRepository(Factory::createDefaultRepositories($io, $config));
         } elseif ("json" === pathinfo($repositoryUrl, PATHINFO_EXTENSION) && file_exists($repositoryUrl)) {
-            $json = new JsonFile($repositoryUrl, new RemoteFilesystem($io, $config));
+            $json = new JsonFile($repositoryUrl, Factory::createRemoteFilesystem($io, $config));
             $data = $json->read();
             if (!empty($data['packages']) || !empty($data['includes']) || !empty($data['provider-includes'])) {
                 $sourceRepo = new ComposerRepository(array('url' => 'file://' . strtr(realpath($repositoryUrl), '\\', '/')), $io, $config);
@@ -294,7 +294,7 @@ EOT
 
         // handler Ctrl+C for unix-like systems
         if (function_exists('pcntl_signal')) {
-            declare (ticks = 100);
+            declare(ticks=100);
             pcntl_signal(SIGINT, function () use ($directory) {
                 $fs = new Filesystem();
                 $fs->removeDirectory($directory);

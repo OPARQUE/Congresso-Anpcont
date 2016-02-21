@@ -22,6 +22,7 @@ use Composer\Package\Link;
 use Composer\Semver\Constraint\Constraint;
 use Composer\Util\RemoteFilesystem;
 use Composer\Config;
+use Composer\Factory;
 
 /**
  * Builds list of package from PEAR channel.
@@ -58,7 +59,7 @@ class PearRepository extends ArrayRepository implements ConfigurableRepositoryIn
 
         $this->url = rtrim($repoConfig['url'], '/');
         $this->io = $io;
-        $this->rfs = $rfs ?: new RemoteFilesystem($this->io, $config);
+        $this->rfs = $rfs ?: Factory::createRemoteFilesystem($this->io, $config);
         $this->vendorAlias = isset($repoConfig['vendor-alias']) ? $repoConfig['vendor-alias'] : null;
         $this->versionParser = new VersionParser();
         $this->repoConfig = $repoConfig;
@@ -104,9 +105,7 @@ class PearRepository extends ArrayRepository implements ConfigurableRepositoryIn
                 try {
                     $normalizedVersion = $versionParser->normalize($version);
                 } catch (\UnexpectedValueException $e) {
-                    if ($this->io->isVerbose()) {
-                        $this->io->writeError('Could not load '.$packageDefinition->getPackageName().' '.$version.': '.$e->getMessage());
-                    }
+                    $this->io->writeError('Could not load '.$packageDefinition->getPackageName().' '.$version.': '.$e->getMessage(), true, IOInterface::VERBOSE);
                     continue;
                 }
 

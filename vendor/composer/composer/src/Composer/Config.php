@@ -30,6 +30,7 @@ class Config
         'vendor-dir' => 'vendor',
         'bin-dir' => '{$vendor-dir}/bin',
         'cache-dir' => '{$home}/cache',
+        'data-dir' => '{$home}',
         'cache-files-dir' => '{$cache-dir}/files',
         'cache-repo-dir' => '{$cache-dir}/repo',
         'cache-vcs-dir' => '{$cache-dir}/vcs',
@@ -44,6 +45,9 @@ class Config
         'classmap-authoritative' => false,
         'prepend-autoloader' => true,
         'github-domains' => array('github.com'),
+        'disable-tls' => false,
+        'cafile' => null,
+        'capath' => null,
         'github-expose-hostname' => true,
         'gitlab-domains' => array('gitlab.com'),
         'store-auths' => 'prompt',
@@ -170,10 +174,13 @@ class Config
             case 'vendor-dir':
             case 'bin-dir':
             case 'process-timeout':
+            case 'data-dir':
             case 'cache-dir':
             case 'cache-files-dir':
             case 'cache-repo-dir':
             case 'cache-vcs-dir':
+            case 'cafile':
+            case 'capath':
                 // convert foo-bar to COMPOSER_FOO_BAR and check if it exists since it overrides the local config
                 $env = 'COMPOSER_' . strtoupper(strtr($key, '-', '_'));
 
@@ -184,7 +191,7 @@ class Config
                     return $val;
                 }
 
-                return ($flags & self::RELATIVE_PATHS == self::RELATIVE_PATHS) ? $val : $this->realpath($val);
+                return (($flags & self::RELATIVE_PATHS) == self::RELATIVE_PATHS) ? $val : $this->realpath($val);
 
             case 'cache-ttl':
                 return (int) $this->config[$key];
@@ -220,7 +227,9 @@ class Config
                 return (int) $this->config['cache-ttl'];
 
             case 'home':
-                return rtrim($this->process($this->config[$key], $flags), '/\\');
+                $val = preg_replace('#^(\$HOME|~)(/|$)#', rtrim(getenv('HOME') ?: getenv('USERPROFILE'), '/\\') . '/', $this->config[$key]);
+
+                return rtrim($this->process($val, $flags), '/\\');
 
             case 'bin-compat':
                 $value = $this->getComposerEnv('COMPOSER_BIN_COMPAT') ?: $this->config[$key];
@@ -262,6 +271,9 @@ class Config
                 }
 
                 return $this->config[$key];
+
+            case 'disable-tls':
+                return $this->config[$key] !== 'false' && (bool) $this->config[$key];
 
             default:
                 if (!isset($this->config[$key])) {
@@ -333,7 +345,7 @@ class Config
      */
     private function realpath($path)
     {
-        if (substr($path, 0, 1) === '/' || substr($path, 1, 1) === ':') {
+        if (preg_match('{^(?:/|[a-z]:|[a-z0-9.]+://)}i', $path)) {
             return $path;
         }
 
